@@ -3,6 +3,8 @@
 namespace PlatziPHP\Domain;
 
 class Post{
+   
+    private $id;
     
     private $author;
     
@@ -11,10 +13,17 @@ class Post{
     private $body;
       
     //Con Hint le decimos de qué tipo es el parámetro, en este caso $author es de tipo Author
-    public function __construct(Author $author, $title, $body) {
-        $this ->author = $author;
+    public function __construct($authorId, $title, $body, $id) {        
+        $this ->author = $authorId;
         $this ->title = $title;
         $this ->body = $body;
+        $this->id = $id;
+    }
+
+    public static function create(Author $author, $title, $body) {
+        $post = new Post($author, $title, $body);   
+        
+        return $post;
     }
     
     public function getTitle(){
