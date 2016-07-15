@@ -23,7 +23,7 @@ class View{
         //loadtemplate: contenido de un template        
         $content = $this->loadTemplate();
         $response = new Response($content);
-        //var_dump($response);
+        
         return $response;                        
     }
     
@@ -32,7 +32,7 @@ class View{
         $path = dirname(dirname(dirname(__DIR__))).'/resources/views';
         
         $templatePath = "$path/{$this->template}.php";
-        
+        var_dump($templatePath); 
         return $this->includeTemplateFromFile($templatePath, $this->params);        
         
     }

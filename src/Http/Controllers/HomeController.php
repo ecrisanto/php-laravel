@@ -2,7 +2,7 @@
 namespace PlatziPHP\Http\Controllers;
 
 use Illuminate\Http\Request;
-Use \PlatziPHP\FakeDatabase;
+Use PlatziPHP\Infrastructure\FakeDatabase;
 use PlatziPHP\Http\Views\View;
 
 class HomeController extends \Illuminate\Routing\Controller{
@@ -31,9 +31,8 @@ class HomeController extends \Illuminate\Routing\Controller{
     
     public function show($id){
         $posts = $this->db->posts();
-        $view = new View('post_details',[
-            'post'=>$posts->get($id)
-            ]);
+        $view = new View('post_details',['post'=>$posts->get($id)]);
+        //$view = new View('home',        ['posts'=>$posts, 'firstPost' =>$first]);        
         
         return $view->render();
     }

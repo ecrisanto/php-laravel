@@ -1,12 +1,13 @@
 <?php
-namespace PlatziPHP;
-use PlatziPHP\Author;
+namespace PlatziPHP\Infrastructure;
+use PlatziPHP\Domain\Author;
+use PlatziPHP\Domain\Post;
 use \Illuminate\Support\Collection;
 
 class FakeDatabase{
     
     public function posts(){
-        $author = new \PlatziPHP\Author('ecrisanto@gmail.com','123456','AUTOR_DE_PLATZI');                                
+        $author = new Author('ecrisanto@gmail.com','123456','AUTOR_DE_PLATZI');                                
 
         return new Collection([
             1 => new Post($author, 'Post # 1', 'This is the first post'),

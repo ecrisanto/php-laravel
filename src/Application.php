@@ -24,7 +24,7 @@ class Application
         );
 
         $router->get('/', HomeController::class . '@index');
-        $router->get('/post/{id}', HomeController::class . '@show');
+        $router->get('/post/{id}', HomeController::class . '@index');
 
         $response = $router->dispatch(Request::capture());
 
