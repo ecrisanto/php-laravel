@@ -32,7 +32,7 @@ class View{
         $path = dirname(dirname(dirname(__DIR__))).'/resources/views';
         
         $templatePath = "$path/{$this->template}.php";
-        var_dump($templatePath); 
+       
         return $this->includeTemplateFromFile($templatePath, $this->params);        
         
     }
