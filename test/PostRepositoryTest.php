@@ -1,12 +1,14 @@
 <?php
-class Databasetext extends PHPUnit_Framework_TestCase{
+class PostRepositoryTest extends PHPUnit_Framework_TestCase{
+    use PlatziPHP\Infrastructure\PostRepository;
+    
     
     /**
      * Si empieza con la palabras "test" no hace dalta poner como comentario "test"
      */
-    function test_connection_doesnt_explode(){
-        $db = new PlatziPHP\Infrastructure\Database();
-        $result = $db->posts(); 
+    function test_all_posts(){
+        $posts = new PostRepository();
+        $result = $posts->all(); 
         
         $this->assertInstanceOf(
                 \Illuminate\Support\Collection::class, 
@@ -18,6 +20,18 @@ class Databasetext extends PHPUnit_Framework_TestCase{
             PlatziPHP\Domain\Post::class, 
             $post);            
         }                                        
+    }
+            
+    function test_find_a_post_by_id(){
+        
+        $posts = new PostRepository();
+        
+        $post->$posts->find(1);
+        $this->assertInstanceOf(
+                PlatziPHP\Domain\Post::class, 
+                $post
+        );
+        
     }
 }
 
