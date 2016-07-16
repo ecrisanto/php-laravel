@@ -1,13 +1,13 @@
 <?php
 class PostRepositoryTest extends PHPUnit_Framework_TestCase{
-    use PlatziPHP\Infrastructure\PostRepository;
+    //use \PlatziPHP\Infrastructure\PostRepository;
     
     
     /**
      * Si empieza con la palabras "test" no hace dalta poner como comentario "test"
      */
     function test_all_posts(){
-        $posts = new PostRepository();
+        $posts = new \PlatziPHP\Infrastructure\PostRepository();
         $result = $posts->all(); 
         
         $this->assertInstanceOf(
@@ -24,9 +24,9 @@ class PostRepositoryTest extends PHPUnit_Framework_TestCase{
             
     function test_find_a_post_by_id(){
         
-        $posts = new PostRepository();
+        $posts = new \PlatziPHP\Infrastructure\PostRepository();
         
-        $post->$posts->find(1);
+        $post = $posts->find(1);
         $this->assertInstanceOf(
                 PlatziPHP\Domain\Post::class, 
                 $post
