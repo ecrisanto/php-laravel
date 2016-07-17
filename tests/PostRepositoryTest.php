@@ -44,7 +44,8 @@ class PostRepositoryTest extends PHPUnit_Framework_TestCase{
     
     function test_searching_post(){
         $posts = new \PlatziPHP\Infrastructure\PostRepository();
-        $posts->search('#4');
+        $results = $posts->search('#4');
+        $this->assertInstanceOf(\Illuminate\Support\Collection::class, $results);
     }
 }
 

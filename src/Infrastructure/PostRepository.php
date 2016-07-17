@@ -2,6 +2,7 @@
 namespace PlatziPHP\Infrastructure;
 use \Illuminate\Support\Collection;
 use PlatziPHP\Domain\Post;
+use \PlatziPHP\Domain\EntityNotFound;
 
 class PostRepository{
     
@@ -33,7 +34,7 @@ class PostRepository{
        
        $result=  $statement->fetch();
        if($result === false){
-           throw new \OutOfBoundsException("Post $id doesnt exists");
+           throw new EntityNotFound($id, "Post $id doesnt exists");
        }
        
        return $this->mapPost($result);

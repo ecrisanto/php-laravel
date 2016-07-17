@@ -5,6 +5,7 @@
 <body>    
     <ul>
         <?php
+        phpinfo();
         use PlatziPHP\Post;
         /** @type \PlatziPHP\Post[] $posts */    
         foreach ($posts as $post): ?>

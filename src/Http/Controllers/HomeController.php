@@ -16,7 +16,7 @@ class HomeController extends \Illuminate\Routing\Controller{
     
     public function index(Request $request){
 
-        $posts = $this->imprint->listPublishPosts();
+        $posts = $this->imprint->listPublishedPosts();
         
         $first = $posts->first();
                 
@@ -26,11 +26,22 @@ class HomeController extends \Illuminate\Routing\Controller{
 
     }
     
-    public function show($id){
-        $posts = $this->imprint->listPublishPosts();
-        $view = new View('post_details',['post'=>$posts->get($id)]);
-        //$view = new View('home',        ['posts'=>$posts, 'firstPost' =>$first]);        
-        
+//    public function show($id){
+//        $posts = $this->imprint->listPublishPosts();
+//        $view = new View('post_details',['post'=>$posts->get($id)]);
+//        //$view = new View('home',        ['posts'=>$posts, 'firstPost' =>$first]);        
+//        
+//        return $view->render();
+//    }
+    
+    public function show($id)
+    {
+        $post = $this->imprint->findById($id);
+
+        $view = new View('post_details', [
+            'post' => $post
+        ]);
+
         return $view->render();
     }
 }
