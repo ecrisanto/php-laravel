@@ -26,12 +26,25 @@ class PostRepositoryTest extends PHPUnit_Framework_TestCase{
         
         $posts = new \PlatziPHP\Infrastructure\PostRepository();
         
-        $post = $posts->find(1);
+        $post= $posts->find(1);
         $this->assertInstanceOf(
                 PlatziPHP\Domain\Post::class, 
                 $post
         );
         
+    }
+    
+    function test_fail_to_find_a_post_by_id(){
+        
+        $posts = new \PlatziPHP\Infrastructure\PostRepository();
+        
+        $this->setExpectedException(OutOfBoundsException::class);
+        $post= $posts->find(234);              
+    }
+    
+    function test_searching_post(){
+        $posts = new \PlatziPHP\Infrastructure\PostRepository();
+        $posts->search('#4');
     }
 }
 

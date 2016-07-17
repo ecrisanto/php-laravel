@@ -31,9 +31,22 @@ class PostRepository{
        
        $statement->execute();
        
-       return $this->mapPost(
-               $statement->fetch()
-               );
+       $result=  $statement->fetch();
+       if($result === false){
+           throw new \OutOfBoundsException("Post $id doesnt exists");
+       }
+       
+       return $this->mapPost($result);
+    }
+    
+    public function search($query){
+        $pdo = $this->getPDO();
+        $statement = $pdo->prepare(
+                'SELECT * FROM posts WHERE title LIKE :query or BODY LIKE :query'
+                );
+        $query = "%$query%";
+        $statement->bindParam(':query', $query, \PDO::PARAM_STR);
+        return $this->mapToPosts($statement->fetchAll());
     }
     
     /**
